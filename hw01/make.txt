@@ -1,0 +1,10 @@
+all: main
+
+fib.o: fib.cc fib.h
+	g++ -c -Werror fib.cc
+	
+main.o: main.cc fib.h
+	g++ -c -Werror main.cc
+
+main: main.o fib.o
+	g++ -o main main.o fib.o

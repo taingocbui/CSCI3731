@@ -1,5 +1,6 @@
 #include <cstdio>
-int main() {
+#include "fib.h"
+int fib(int f) {
 	long c[100];
 	c[0] = 0;
 	c[1] = 1;
@@ -7,6 +8,5 @@ int main() {
 	{
 		c[i] = c[i-1] + c[i-2];
 	}
-	int f = 75;
-	printf("Fib( %d ) = %d + \n", f, c[f]);
+	return c[f];
 }
