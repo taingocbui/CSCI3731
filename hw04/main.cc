@@ -1,13 +1,12 @@
 #include <cstdio>
 #include "readPPM.h"
+#include "writePPM.h"
 int main(){
-	
-	char fileName[10] = "test.ppm";
-	char pheader[10];
 	int width = 0;
 	int height = 0;
-	int pixel = 0;
-	int size = 128;
-	readPPM(fileName, pheader, &width, &height, &pixel, &size);
+	int size = 0;
+	unsigned char* pixels = readPPM(&width, &height, &size);
+	
+	writePPM(&width, &height, &size, pixels);
 	return 0;
 }
