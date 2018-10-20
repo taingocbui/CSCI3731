@@ -7,12 +7,36 @@ private:
 	double x;
 	
 public:
-	Angle(double x) throw();
-	virtual ~Angle() throw();
+	Angle(double x);
+	virtual ~Angle();
 	
-	double getAngle() const throw();
+	double getAngle() const;
 	
-	void setAngle(double x) throw();
+	void setAngle(double x);
+	
+	void setRightAngle(Angle& a);
+	
+	Angle operator+(const Angle& a) const;
+	
+	const Angle& operator+=(const Angle& a);
+	
+	Angle operator-(const Angle& a) const;
+	
+	const Angle& operator-=(const Angle& a);
+	
+	Angle operator*(const Angle& a) const;
+	
+	const Angle& operator*=(const Angle& a);
+	
+	Angle operator/(const Angle& a) const;
+	
+	const Angle& operator/=(const Angle& a);
+	
+	bool operator==(const Angle& a) const; 
+	
+	const Angle& operator=( const Angle& a);
+	
+	const Angle& operator=(const double d);
 };
 
 #endif
