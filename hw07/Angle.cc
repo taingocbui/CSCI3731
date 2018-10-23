@@ -23,60 +23,64 @@ void Angle::setRightAngle(Angle& a){
 	if (a.getAngle() < 0) a.setAngle(std::fmod(a.getAngle(),360) + 360);
 }
 
+void Angle::CorrectAngle(double d){
+	if (d > 360) this->x = std::fmod(d, 360);
+	if (d < 0) this->x = std::fmod(d, 360) + 360;
+}	
+
 Angle Angle::operator+(const Angle& a) const{
-	double answer = x+a.getAngle();
-	if (answer > 360) return Angle(std::fmod(answer,360));
-	if (answer < 0) return Angle(std::fmod(answer,360) + 360);
-	return Angle(answer);
+	Angle answer(0);
+	double d = x + a.getAngle();
+	answer.CorrectAngle(d);	
+	return answer;
 }
 
 const Angle& Angle::operator+=(const Angle& a){
 	x += a.getAngle();
-	setRightAngle(*this);
+	CorrectAngle(this->x);
 	return *this;
 } 
 
 Angle Angle::operator-(const Angle& a) const{
-	double answer = (x - a.getAngle());
-	if (answer > 360) return Angle(std::fmod(answer,360));
-	if (answer < 0) return Angle(std::fmod(answer,360) + 360);
-	return Angle(answer);
+	Angle answer(0);
+	double d = x - a.getAngle();
+	answer.CorrectAngle(d);	
+	return answer;
 }
 const Angle& Angle::operator-=(const Angle& a){
 	x -= a.getAngle();
-	setRightAngle(*this);
+	CorrectAngle(this->x);
 	return *this;
 } 
 
-Angle Angle::operator*(const Angle& a) const{
-	double answer = x*a.getAngle();
-	if (answer > 360) return Angle(std::fmod(answer,360));
-	if (answer < 0) return Angle(std::fmod(answer,360) + 360);
-	else return Angle(answer);
+Angle Angle::operator*(double a) const{
+	Angle answer(0);
+	double d = x * a;
+	answer.CorrectAngle(d);	
+	return answer;
 }
 
-const Angle& Angle::operator*=(const Angle& a){
-	x *= a.getAngle();
-	setRightAngle(*this);
+const Angle& Angle::operator*=(double a){
+	x *= a;
+	CorrectAngle(this->x);
 	return *this;
 } 
 
-Angle Angle::operator/(const Angle& a) const{
-	double answer;
-	if (a.getAngle() == 0) throw "Division by zero angle";
+Angle Angle::operator/(double a) const{
+	Angle answer(0);
+	if (a == 0) throw "Division by zero angle";
 	else{
-		answer = x / a.getAngle();
-		if (answer > 360) return Angle(std::fmod(answer,360));
-		if (answer < 0) return Angle(std::fmod(answer,360) + 360);
-		else return Angle(answer);
+		double d = x / a;
+		answer.CorrectAngle(d);	
+		return answer;
 	}
 }
 
-const Angle& Angle::operator/=(const Angle& a){
-	if(a.getAngle() == 0) throw "Division by zero angle";
+const Angle& Angle::operator/=(double a){
+	if(a == 0) throw "Division by zero angle";
 	else{
-		x /= a.getAngle();
-		setRightAngle(*this);
+		x /= a;
+		CorrectAngle(this->x);
 		return *this;
 	}
 }

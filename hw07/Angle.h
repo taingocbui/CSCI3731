@@ -16,6 +16,8 @@ public:
 	
 	void setRightAngle(Angle& a);
 	
+	void CorrectAngle(double d);
+	
 	Angle operator+(const Angle& a) const;
 	
 	const Angle& operator+=(const Angle& a);
@@ -24,13 +26,13 @@ public:
 	
 	const Angle& operator-=(const Angle& a);
 	
-	Angle operator*(const Angle& a) const;
+	Angle operator*(double a) const;
 	
-	const Angle& operator*=(const Angle& a);
+	const Angle& operator*=(double a);
 	
-	Angle operator/(const Angle& a) const;
+	Angle operator/(double a) const;
 	
-	const Angle& operator/=(const Angle& a);
+	const Angle& operator/=(double a);
 	
 	bool operator==(const Angle& a) const; 
 	

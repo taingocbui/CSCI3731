@@ -16,18 +16,17 @@ int main(){
 	printf("The += angle is %f\n", z.getAngle());
 	printf("The -= angle is %f\n", a.getAngle());
 	Angle f(350);
-	Angle b(-3);
-	Angle c(450);
-	Angle d = b*c;
+	
+	Angle d = f*3;
 	printf("The mul angle is %f\n", d.getAngle());
-	d*= b;	
+	d*= 5;	
 	printf("The *= angle is %f\n", d.getAngle());
 	
 	try{
-	Angle e = c/b;
-	c/= b;
+	Angle e = y/5;
+	y/= 5;
 	printf("The division angle is %f\n", e.getAngle());
-	printf("The /= angle is %f\n", c.getAngle());
+	printf("The /= angle is %f\n", y.getAngle());
 	} catch (const char* msg)
 		{
 		std::cout<<msg<<std::endl;
@@ -35,7 +34,7 @@ int main(){
 	
 	printf("Angle %f == Angle %f is %s\n", f.getAngle(), y.getAngle(), f==y ? "true" : "false");
 	printf("Angle x is %f\n", x.getAngle());
-	x = b;
+	x = y;
 	printf("Angle x is after assign %f\n",x.getAngle());
 	x = 40;
 	printf("Angle x is after assign %f\n",x.getAngle());
