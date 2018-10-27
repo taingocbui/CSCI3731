@@ -5,20 +5,20 @@
 class Population{
 	private:
 		Fish** fishes;
-		int numf;
+		int size;
 		
 	public:
 		Population();
-		Population(int max_fishes);		
+		Population(int max_fishes);
 		virtual ~Population();
 		
-		void add(Fish& f);
+		void add(Fish* f);
+		
+		int getSize();
 		
 		Fish* get(int index);
 		
-		void remove(Fish& f);
-		
-		int size();
+		void remove(Fish* f);
 };
 
 #endif

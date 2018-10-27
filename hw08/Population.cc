@@ -1,47 +1,47 @@
 #include "Fish.h"
 #include "Population.h"
 #include <cstdio>
+#include <iostream>
 
-Population::Population(){
-	this->fishes = new Fish*[30];
-	
-	this->numf = 0;
-}
+Population::Population(){}
 
 Population::Population(int max_fishes){
-	this->fishes = new Fish*[max_fishes];
-	this->numf = 0;
+	fishes = new Fish*[max_fishes];
+	this->size = 0;	
 }
 
 Population::~Population(){
-	delete [] *fishes;
+	printf("delete population");
 	delete [] fishes;
+	fishes = NULL;
 }
 
-void Population::add(Fish& f){
-	*fishes[numf] = f;
-	numf++;
+void Population::add(Fish* f){
+	fishes[size] = f;
+	size++;
+}
+
+int Population::getSize(){
+	return size;
 }
 
 Fish* Population::get(int index){
 	return fishes[index];
 }
 
-void Population::remove(Fish& f){
+void Population::remove(Fish* f){
 	int index = 0;
-	while((index < numf) && (f != *fishes[numf]) )
+	while((index < size) && (f!= fishes[index]))
 		index++;
 	
-	if (index == numf) printf("The population does not have such fish");
+	if(index == size)
+		printf("The fish is not in the list");
+	
 	else
 	{
-		numf--;
-		*fishes[index] = *fishes[numf];
+		size--;
+		fishes[index] = fishes[size];
 	}
-}
-
-int Population::size(){
-	return numf;
 }
 
 

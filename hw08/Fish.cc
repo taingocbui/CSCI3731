@@ -13,35 +13,10 @@ Fish::Fish(double x, double y, double speed, Angle& direction, Angle& turn_rate 
 	this->speed = speed;
 	this->direction = direction;
 	this->turn_rate = turn_rate;
-	
-		
 }
 
 Fish::~Fish(){	
-}
-
-double Fish::getX() const{
-	return x;
-}
-
-double Fish::getY() const{
-	return y;
-}
-
-double Fish::getSpeed() const{
-	return speed;
-}
-
-const Angle& Fish::getDirection() const{
-	return direction;
-}
-
-const Angle& Fish::getTurn() const{
-	return turn_rate;
-}
-
-bool Fish::operator!=(const Fish& a) const {
-	return ((x != a.getX()) || (y != a.getY()) || (speed != a.getSpeed()) || (direction != a.getDirection()) || (turn_rate != a.getTurn()));
+	std::cout<<"delete fish ("<<this->x<<" , "<<this->y<<")"<<std::endl;
 }
 
 void Fish::swim(){
