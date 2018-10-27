@@ -3,15 +3,14 @@
 #include <cstdio>
 #include <iostream>
 
-Population::Population(){}
 
-Population::Population(int max_fishes){
-	fishes = new Fish*[max_fishes];
+Population::Population(){
+	fishes = new Fish*[100];
 	this->size = 0;	
 }
 
 Population::~Population(){
-	printf("delete population");
+	printf("delete population\n");
 	delete [] fishes;
 	fishes = NULL;
 }
@@ -21,11 +20,11 @@ void Population::add(Fish* f){
 	size++;
 }
 
-int Population::getSize(){
+int Population::getSize() const{
 	return size;
 }
 
-Fish* Population::get(int index){
+Fish* Population::get(int index) const{
 	return fishes[index];
 }
 
@@ -35,7 +34,7 @@ void Population::remove(Fish* f){
 		index++;
 	
 	if(index == size)
-		printf("The fish is not in the list");
+		printf("The fish is not in the list\n");
 	
 	else
 	{

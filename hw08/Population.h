@@ -1,6 +1,7 @@
 #ifndef POPULATION_H
 #define POPULATION_H
-#include "Fish.h"
+
+class Fish;
 
 class Population{
 	private:
@@ -9,14 +10,13 @@ class Population{
 		
 	public:
 		Population();
-		Population(int max_fishes);
 		virtual ~Population();
 		
 		void add(Fish* f);
 		
-		int getSize();
+		int getSize() const;
 		
-		Fish* get(int index);
+		Fish* get(int index) const;
 		
 		void remove(Fish* f);
 };
