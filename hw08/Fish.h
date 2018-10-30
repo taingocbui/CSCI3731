@@ -18,10 +18,14 @@ class Fish{
 					
 	public:
 	Fish();	
-	Fish(double x, double y,double speed, Angle* direction,Angle* turn_rate, Population* p);	
+	Fish(double x, double y,double speed, Angle direction,Angle turn_rate, Population* p);	
 	virtual~ Fish();
 	
 	void swim();
+	
+	double getX();
+	
+	double getY();
 	
 	friend std::ostream& operator<<(std::ostream& out, const Fish& f);
 };

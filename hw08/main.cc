@@ -1,6 +1,7 @@
+#include <cstdlib>
 #include <string>
 #include <iostream>
-
+#include <math.h>
 #include "Log.h"
 #include "Angle.h"
 #include "Fish.h"
@@ -8,30 +9,43 @@
 
 int main(){
 	Log& log = Log::getInstance(); 
-	log.print("Hello Fish");
+	log.print("Welcome to the Fish World! There is plenty of Fish here\n");
 	
-	Angle a(30);
-	Angle b(60);
-	a = b;
-	std::cout<<a<<std::endl;
 	Population p;
-	Fish f(1,2,5,&a,&b,&p);
-	Fish g(2,3,6,&a,&b,&p);
-	Fish n(1,3,5,&a,&b,&p);
-	Fish k(2,1,4,&a,&b,&p);
-	std::cout<<"The fish coordinate is "<<f<< std::endl;
-	f.swim();
-	std::cout<<"The fish new coordinate after swim is "<<f<<std::endl;
-	f.swim();
-	std::cout<<"The fish new coordinate after swim is "<<f<<std::endl;
-	f.swim();
-	std::cout<<"The fish new coordinate after swim is "<<f<<std::endl;
+	Fish f(0,0,5,Angle(30),Angle(60),&p);
+	Fish g(0,0,6,Angle(45),Angle(45),&p);
+	Fish n(0,0,5,Angle(-30),Angle(120),&p);
+	Fish k(0,0,4,Angle(-45),Angle(-120),&p);
 	
-		
-	std::cout<<"The fish index 1 is "<<*p.get(1)<<std::endl;
-	std::cout<<"The size of population is "<<p.getSize()<<std::endl;
+	int time = 0;
+	std::cout<<"Fishes in the pool at time 0 are:"<<std::endl;
+	for(int i=0; i<p.getSize(); i++){
+            std::cout<<"\t"<< *(p.get(i)) <<std::endl;			
+	}
 	
-	p.remove(p.get(1));
-	std::cout<<"The size of population is "<<p.getSize()<<std::endl;
-	std::cout<<"The fish index 1 is "<<*p.get(1)<<std::endl;
+	while(p.getSize()>0){
+		time++;		
+		std::cout<<" "<<std::endl;
+		std::cout<<"Current time is: "<<time<<std::endl;
+		std::cout<<"The fishes' positions:"<<std::endl;
+		for (int i = 0; i < p.getSize(); i++){
+			p.get(i)->swim();
+			std::cout<<"\t"<<*(p.get(i))<<std::endl;
+			double distance = sqrt(pow(p.get(i)->getX(),2) + (pow(p.get(i)->getY(), 2)));
+			std::cout<<"The distance is "<<distance<<std::endl;
+			if(distance>=100){
+				std::cout<<"\t"<< *(p.get(i))<<" HAS DIED"<<std::endl;
+				Fish* fnew = p.get(i);
+				fnew->~Fish();
+				std::cout<<"The current size of the pool is "<<p.getSize()<<std::endl;
+			}
+			if((p.get(i)->getX() == 0) && (p.get(i)->getY() == 0)){
+				std::cout<<"\t New fishes have been born"<<std::endl;
+				new Fish(0,0,(rand() * 10),Angle(30), Angle(120), &p);
+			}
+		}
+	}
+	
+	std::cout<<"All Fishes have died"<<std::endl;
+	return 0;
 }

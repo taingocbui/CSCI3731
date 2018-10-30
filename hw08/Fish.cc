@@ -7,18 +7,19 @@
 
 Fish::Fish(){}
 
-Fish::Fish(double x, double y, double speed, Angle* direction, Angle* turn_rate, Population* p ){
+Fish::Fish(double x, double y, double speed, Angle direction, Angle turn_rate, Population* p ){
 	this->x = x;
 	this->y = y;
 	this->speed = speed;
-	this->direction = direction;
-	this->turn_rate = turn_rate;
+	this->direction = &direction;
+	this->turn_rate = &turn_rate;
+	this->p = p;
 	p->add(this);
 }
 
 Fish::~Fish(){	
 	std::cout<<"delete fish ("<<this->x<<" , "<<this->y<<")"<<std::endl;
-	//p->remove(this);
+	p->remove(this);
 }
 
 void Fish::swim(){
@@ -27,6 +28,14 @@ void Fish::swim(){
 	else if(choice == 2) *direction += *turn_rate;
 	x += speed * (direction->getCos());
 	y += speed * (direction->getSin());
+}
+
+double Fish::getX(){
+	return this->x;
+}
+
+double Fish::getY(){
+	return this->y;
 }
 
 std::ostream& operator<<(std::ostream& out, const Fish& f){
